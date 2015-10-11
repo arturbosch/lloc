@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 public class LocCounter {
 
-	String fileName;
+	String fileName = "LOC";
 	int locCount = 0;
 	boolean isCommentMode = false;
 	boolean isFullMode = false;
@@ -105,6 +105,7 @@ public class LocCounter {
 			fileName = file.getName();
 		} else {
 			files = argList.stream().map(File::new).collect(Collectors.toList());
+			fileName = (files.size() >= 1) ? files.get(0).getName() : "LOC";
 		}
 
 		int locCount = LOC.countWithModes(strategy, isCommentMode, isFullMode, isLocFileMode,
