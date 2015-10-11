@@ -1,18 +1,14 @@
-import Exceptions.ToFewArgumentsException;
-import Exceptions.UnsupportedLanguageException;
-import Languages.LanguageStrategy;
-import Languages.LanguageStrategyFactory;
-import Languages.NullStrategy;
+package de.artismarti;
 
-import java.io.BufferedWriter;
+import de.artismarti.exceptions.ToFewArgumentsException;
+import de.artismarti.exceptions.UnsupportedLanguageException;
+import de.artismarti.languages.LanguageStrategy;
+import de.artismarti.languages.LanguageStrategyFactory;
+import de.artismarti.languages.NullStrategy;
+import de.artismarti.core.LOC;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +26,6 @@ public class LocCounter {
 	boolean isCommentMode = false;
 	boolean isFullMode = false;
 	boolean isLocFileMode = false;
-	LanguageStrategy strategy;
 
 	public static void main(String... args) throws UnsupportedLanguageException,
 			FileNotFoundException, ToFewArgumentsException {
@@ -41,7 +36,7 @@ public class LocCounter {
 	/**
 	 * To count lines of code of a file or a whole directory with files write:
 	 * <p>
-	 * "java -jar LocCounter.jar [options..] [language] [pathToFile]"
+	 * "java -jar CountMyLOCs.jar [options..] [language] [pathToFile]"
 	 * <p>
 	 * options can be:
 	 * -c for counting comments too\n" +
@@ -56,14 +51,14 @@ public class LocCounter {
 	 * @throws ToFewArgumentsException      if not all needed arguments are given
 	 * @throws FileNotFoundException        if the given file/dir doesn't exist
 	 */
-	public void run(List<String> arguments) throws UnsupportedLanguageException,
+	void run(List<String> arguments) throws UnsupportedLanguageException,
 			ToFewArgumentsException, FileNotFoundException {
 
 		List<String> argList = new ArrayList<>(arguments);
 
 		if (argList.contains("-h")) {
 			System.out.println("To count lines of code of a file or a whole directory with files write:\n" +
-					"java -jar LocCounter.jar [options..] [language] [pathToFile]\n" +
+					"java -jar CountMyLOCs.jar [options..] [language] [pathToFile]\n" +
 					"\toptions can be: \n" +
 					"\t\t-c for counting comments too\n" +
 					"\t\t-f for full mode, counting imports and package statements too\n" +
@@ -94,7 +89,7 @@ public class LocCounter {
 		}
 
 		String lang = argList.remove(0);
-		strategy = getLanguageStrategy(lang);
+		LanguageStrategy strategy = LanguageStrategyFactory.getInstance(lang);
 		if (strategy instanceof NullStrategy) {
 			throw new UnsupportedLanguageException("This language is not supported!");
 		}
@@ -106,62 +101,12 @@ public class LocCounter {
 
 		fileName = file.getName();
 
-		countDir(file);
+		int locCount = LOC.countWithModes(strategy, isCommentMode, isFullMode, isLocFileMode, file);
+		this.locCount = locCount;
 		System.out.println(fileName + " : " + locCount);
 	}
 
-	private LanguageStrategy getLanguageStrategy(String lang) {
-		return LanguageStrategyFactory.getInstance(lang);
-	}
-
-	private void countDir(File dir) {
-		if (dir.isDirectory()) {
-			File[] files = dir.listFiles();
-			if (files != null) {
-				for (File file : files) {
-					countDir(file);
-				}
-			}
-		} else if (dir.isFile()) {
-			countFile(dir);
-		}
-	}
-
-	private void countFile(File file) {
-		int locForFile = 0;
-
-		if (!strategy.isLangOfFileSame(file.getName())) {
-			return;
-		}
-
-		try {
-			List<String> lines = Files.readAllLines(file.toPath());
-			locForFile += strategy.analyze(lines, isCommentMode, isFullMode);
-		} catch (IOException e) {
-			System.err.format("IOException: %s%n", e);
-		}
-
-		locCount += locForFile;
-
-		if (isLocFileMode) {
-			printLocFile(file.getName(), locForFile);
-		}
-	}
-
-	private void printLocFile(String filename, int count) {
-		Path path = Paths.get("./" + fileName + ".txt");
-		String append = filename + " : " + count + "\n";
-
-		try (BufferedWriter writer = Files.newBufferedWriter(path, Charset.forName("ISO-8859-1"),
-				StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
-			writer.write(append, 0, append.length());
-			writer.close();
-		} catch (IOException e) {
-			System.err.format("IOException: %s%n", e);
-		}
-	}
-
-	public int getLocCount() {
+	int getLocCount() {
 		return locCount;
 	}
 }

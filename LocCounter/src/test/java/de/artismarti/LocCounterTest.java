@@ -1,19 +1,28 @@
-import Exceptions.ToFewArgumentsException;
-import Exceptions.UnsupportedLanguageException;
-import Languages.JavaStrategy;
-import Languages.LanguageStrategy;
-import Languages.LanguageStrategyFactory;
-import Languages.NullStrategy;
+package de.artismarti;
+
+import de.artismarti.exceptions.ToFewArgumentsException;
+import de.artismarti.exceptions.UnsupportedLanguageException;
+import de.artismarti.languages.JavaStrategy;
+import de.artismarti.languages.LanguageStrategy;
+import de.artismarti.languages.LanguageStrategyFactory;
+import de.artismarti.languages.NullStrategy;
+import org.hamcrest.MatcherAssert;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.Is.isA;
 import static org.junit.Assert.assertTrue;
@@ -25,6 +34,14 @@ public class LocCounterTest {
 	@Before
 	public void setUp() {
 		locCounter = new LocCounter();
+	}
+
+	@After
+	public void tearDown() throws IOException {
+		Path pathToSrc = Paths.get("./src.txt");
+		if (Files.exists(pathToSrc)) {
+			Files.delete(pathToSrc);
+		}
 	}
 
 	@Test
@@ -59,7 +76,7 @@ public class LocCounterTest {
 
 	@Test
 	public void testFileCount() {
-		String[] args = {"java","./src/main/java/Exceptions/UnsupportedLanguageException.java"};
+		String[] args = {"java","./src/main/java/de/artismarti/exceptions/UnsupportedLanguageException.java"};
 		int expectedCount = 3;
 		assertLocCount(expectedCount, args);
 	}
@@ -104,7 +121,7 @@ public class LocCounterTest {
 	private void assertLocCount(int exceptedCount, String[] args) {
 		try {
 			locCounter.run(new ArrayList<>(Arrays.asList(args)));
-			assertTrue(locCounter.getLocCount() >= exceptedCount);
+			MatcherAssert.assertThat(locCounter.getLocCount(), greaterThanOrEqualTo(exceptedCount));
 		} catch (Exception e) {
 			Assert.assertThat("An exception occurred, but file should exist.", true, is(false));
 		}

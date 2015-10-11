@@ -1,4 +1,4 @@
-package Languages;
+package de.artismarti.languages;
 
 import java.util.List;
 
