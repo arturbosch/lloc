@@ -10,7 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Logic to count LOCs.
@@ -24,12 +26,18 @@ public class LOC {
 	boolean isCommentMode;
 	boolean isFullMode;
 	boolean isLocFileMode;
+	boolean sortByKey;
+	private Map<String, Integer> fileToLocMap;
 
-	private LOC(String name, boolean isCommentMode, boolean isFullMode, boolean isLocFileMode) {
+	private LOC(String name, boolean isCommentMode, boolean isFullMode, boolean isLocFileMode, boolean sortByKey) {
 		this.fileName = name;
 		this.isCommentMode = isCommentMode;
 		this.isFullMode = isFullMode;
 		this.isLocFileMode = isLocFileMode;
+		this.sortByKey = sortByKey;
+		if (isLocFileMode) {
+			fileToLocMap = new HashMap<>();
+		}
 	}
 
 	/**
@@ -40,7 +48,7 @@ public class LOC {
 	 * @return loc count of all analyzed files
 	 */
 	public static int count(LanguageStrategy strategy, File... files) {
-		return countWithModes(strategy, false, false, false, files);
+		return countWithModes(strategy, false, false, false, false, files);
 	}
 
 	/**
@@ -51,7 +59,7 @@ public class LOC {
 	 * @return loc count of all analyzed files
 	 */
 	public static int countWithComments(LanguageStrategy strategy, File... files) {
-		return countWithModes(strategy, true, false, false, files);
+		return countWithModes(strategy, true, false, false, false, files);
 	}
 
 	/**
@@ -65,11 +73,16 @@ public class LOC {
 	 * @return loc count of all analyzed files
 	 */
 	public static int countWithModes(LanguageStrategy strategy, boolean isCommentMode, boolean isFullMode,
-	                                 boolean isLocFileMode, File... files) {
+	                                 boolean isLocFileMode, boolean sortByKey, File... files) {
 		int counter = 0;
 		for (File file : files) {
-			counter += new LOC(file.getName(), isCommentMode, isFullMode, isLocFileMode).countDir(file, strategy);
+			LOC loc = new LOC(file.getName(), isCommentMode, isFullMode, isLocFileMode, sortByKey);
+			counter += loc.countDir(file, strategy);
+			if (isLocFileMode) {
+				loc.printOutLocFile();
+			}
 		}
+
 		return counter;
 	}
 
@@ -103,20 +116,29 @@ public class LOC {
 		}
 
 		if (isLocFileMode) {
-			printLocFile(file.getName(), locForFile);
+			prepareForPrintOut(file.getName(), locForFile);
 		}
 
 		return locForFile;
 	}
 
-	private void printLocFile(String filename, int count) {
+	private void prepareForPrintOut(String filename, int count) {
+		fileToLocMap.put(filename, count);
+	}
+
+	void printOutLocFile() {
 		Path path = Paths.get("./" + fileName + ".txt");
-		String append = filename + " : " + count + "\n";
+		Map<String, Integer> sortedMap =
+				MapUtils.sortMap(fileToLocMap, sortByKey ? MapUtils.byKeys : MapUtils.byValues);
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path, Charset.forName(ISO_8859_1),
 				StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
-			writer.write(append, 0, append.length());
-			writer.close();
+			String append;
+			for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+				append = entry.getKey() + " : " + entry.getValue();
+				writer.write(append, 0, append.length());
+				writer.newLine();
+			}
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
 		}

@@ -27,6 +27,7 @@ public class LocCounter {
 	boolean isCommentMode = false;
 	boolean isFullMode = false;
 	boolean isLocFileMode = false;
+	boolean sortByKeys = false;
 
 	public static void main(String... args) throws UnsupportedLanguageException,
 			FileNotFoundException, ToFewArgumentsException {
@@ -63,7 +64,8 @@ public class LocCounter {
 					"\toptions can be: \n" +
 					"\t\t-c for counting comments too\n" +
 					"\t\t-f for full mode, counting imports and package statements too\n" +
-					"\t\t-l to create a log file with filename:loc\n" +
+					"\t\t-l to create a log file with filename:loc with the default loc sorting\n" +
+					"\t\t-ls to create a log file with filename:loc and sorting by filenames \n" +
 					"\t\t-h for help eg. this message\n" +
 					"\tlanguages supported so far: \n" +
 					"\t\tjava");
@@ -83,6 +85,12 @@ public class LocCounter {
 		if (argList.contains("-l")) {
 			argList.remove("-l");
 			isLocFileMode = true;
+		}
+
+		if (argList.contains("-ls")) {
+			argList.remove("-ls");
+			isLocFileMode = true;
+			sortByKeys = true;
 		}
 
 		if (argList.isEmpty() || argList.size() < 2) {
@@ -108,7 +116,7 @@ public class LocCounter {
 			fileName = (files.size() >= 1) ? files.get(0).getName() : "LOC";
 		}
 
-		int locCount = LOC.countWithModes(strategy, isCommentMode, isFullMode, isLocFileMode,
+		int locCount = LOC.countWithModes(strategy, isCommentMode, isFullMode, isLocFileMode, sortByKeys,
 				files.toArray(new File[files.size()]));
 		this.locCount = locCount;
 		System.out.println(fileName + " : " + locCount);
