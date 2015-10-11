@@ -1,0 +1,7 @@
+Version 1.0 - initial Version 
+
+Version 1.1 - Changed to count logical loc
+
+Version 1.2 - Can be used as a library with the LOC-class
+            - added sorting for output log file
+            - multiple paths can be added to the analyze
