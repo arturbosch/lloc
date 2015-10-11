@@ -18,9 +18,6 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.Is.isA;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by artur on 10.05.15.
- */
 public class LocCounterTest {
 
 	private LocCounter locCounter;
@@ -28,6 +25,11 @@ public class LocCounterTest {
 	@Before
 	public void setUp() {
 		locCounter = new LocCounter();
+	}
+
+	@Test
+	public void test() throws UnsupportedLanguageException, FileNotFoundException, ToFewArgumentsException {
+	    LocCounter.main("java", "./");
 	}
 
 	@Test
