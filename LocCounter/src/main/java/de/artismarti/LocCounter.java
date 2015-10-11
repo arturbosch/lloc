@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by artur on 10.05.15.
@@ -94,14 +95,20 @@ public class LocCounter {
 			throw new UnsupportedLanguageException("This language is not supported!");
 		}
 
-		File file = new File(argList.remove(0));
-		if (!file.exists()) {
-			throw new FileNotFoundException("The file you entered doesn't exist.");
+		List<File> files = new ArrayList<>();
+		if (argList.size() == 1) {
+			File file = new File(argList.remove(0));
+			if (!file.exists()) {
+				throw new FileNotFoundException("The file you entered doesn't exist.");
+			}
+			files.add(file);
+			fileName = file.getName();
+		} else {
+			files = argList.stream().map(File::new).collect(Collectors.toList());
 		}
 
-		fileName = file.getName();
-
-		int locCount = LOC.countWithModes(strategy, isCommentMode, isFullMode, isLocFileMode, file);
+		int locCount = LOC.countWithModes(strategy, isCommentMode, isFullMode, isLocFileMode,
+				files.toArray(new File[files.size()]));
 		this.locCount = locCount;
 		System.out.println(fileName + " : " + locCount);
 	}
