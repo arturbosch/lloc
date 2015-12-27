@@ -1,3 +1,5 @@
+## Usage:
+
 To count lines of code of a file or a whole directory with files write:
 
 java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
@@ -10,3 +12,16 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 		* -h for help eg. this message
 	languages supported so far: 
 		* java
+
+## Changelog:
+
+### v1.0 
+- initial Version 
+
+### v1.1 
+- Changed to count logical loc
+
+### v1.2 
+- Can be used as a library with the LOC-class
+- sorting for output log file
+- paths can be added to the analyze
