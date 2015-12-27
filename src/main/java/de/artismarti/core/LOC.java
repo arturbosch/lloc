@@ -21,12 +21,12 @@ import java.util.Map;
  */
 public class LOC {
 
-	public static final String ISO_8859_1 = "ISO-8859-1";
-	String fileName;
-	boolean isCommentMode;
-	boolean isFullMode;
-	boolean isLocFileMode;
-	boolean sortByKey;
+	private static final String ISO_8859_1 = "ISO-8859-1";
+	private String fileName;
+	private boolean isCommentMode;
+	private boolean isFullMode;
+	private boolean isLocFileMode;
+	private boolean sortByKey;
 	private Map<String, Integer> fileToLocMap;
 
 	private LOC(String name, boolean isCommentMode, boolean isFullMode, boolean isLocFileMode, boolean sortByKey) {
@@ -126,7 +126,7 @@ public class LOC {
 		fileToLocMap.put(filename, count);
 	}
 
-	void printOutLocFile() {
+	private void printOutLocFile() {
 		Path path = Paths.get("./" + fileName + ".txt");
 		Map<String, Integer> sortedMap =
 				MapUtils.sortMap(fileToLocMap, sortByKey ? MapUtils.byKeys : MapUtils.byValues);

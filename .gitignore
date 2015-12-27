@@ -1,0 +1,8 @@
+*.idea
+*.class
+*.jar
+*.war
+target
+build
+*.iml
+TextAnalyzer.iml
