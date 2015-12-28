@@ -28,6 +28,20 @@ public class CppStrategyTest {
 	}
 
 	@Test
+	public void testLogicalAndFullWithStaticMethod() {
+		int count = LOC.countWithCommentsAndImports(LanguageStrategyFactory.getInstance("cpp"),
+				new File("./src/test/resources/test.cpp"));
+		assertThat(count, is(6));
+	}
+
+	@Test
+	public void testLogicalAndImports() {
+		int count = LOC.countWithImports(LanguageStrategyFactory.getInstance("cpp"),
+				new File("./src/test/resources/test.cpp"));
+		assertThat(count, is(5));
+	}
+
+	@Test
 	public void testLogicalAndFull() {
 		int count = LOC.countWithModes(LanguageStrategyFactory.getInstance("cpp"),
 				true, true, false, false, new File("./src/test/resources/test.cpp"));

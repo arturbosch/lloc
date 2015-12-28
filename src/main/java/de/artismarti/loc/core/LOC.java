@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * Logic to count LOCs.
- * <p>
+ * <p/>
  * Created by artur on 11.10.15.
  */
 public class LOC {
@@ -60,6 +60,29 @@ public class LOC {
 	 */
 	public static int countWithComments(LanguageStrategy strategy, File... files) {
 		return countWithModes(strategy, true, false, false, false, files);
+	}
+
+	/**
+	 * Counts the LOC for all given files with the given language. Comments, import and package statements are counted too.
+	 *
+	 * @param strategy use {@link de.artismarti.loc.languages.LanguageStrategyFactory} to build a language strategy
+	 * @param files    which files should be analyzed
+	 * @return loc count of all analyzed files
+	 */
+	public static int countWithCommentsAndImports(LanguageStrategy strategy, File... files) {
+		return countWithModes(strategy, true, true, false, false, files);
+	}
+
+	/**
+	 * Counts the LOC for all given files with the given language. Import and package statements are counted too,
+	 * but not comments.
+	 *
+	 * @param strategy use {@link de.artismarti.loc.languages.LanguageStrategyFactory} to build a language strategy
+	 * @param files    which files should be analyzed
+	 * @return loc count of all analyzed files
+	 */
+	public static int countWithImports(LanguageStrategy strategy, File... files) {
+		return countWithModes(strategy, false, true, false, false, files);
 	}
 
 	/**
