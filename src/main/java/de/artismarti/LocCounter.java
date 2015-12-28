@@ -1,11 +1,11 @@
 package de.artismarti;
 
-import de.artismarti.exceptions.ToFewArgumentsException;
-import de.artismarti.exceptions.UnsupportedLanguageException;
-import de.artismarti.languages.LanguageStrategy;
-import de.artismarti.languages.LanguageStrategyFactory;
-import de.artismarti.languages.NullStrategy;
-import de.artismarti.core.LOC;
+import de.artismarti.loc.exceptions.ToFewArgumentsException;
+import de.artismarti.loc.exceptions.UnsupportedLanguageException;
+import de.artismarti.loc.languages.LanguageStrategy;
+import de.artismarti.loc.languages.LanguageStrategyFactory;
+import de.artismarti.loc.languages.NullStrategy;
+import de.artismarti.loc.core.LOC;
 
 import java.io.File;
 import java.io.FileNotFoundException;

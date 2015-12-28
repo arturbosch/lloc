@@ -1,10 +1,10 @@
-package de.artismarti.languages;
+package de.artismarti.loc.languages;
 
 import java.util.List;
 
 /**
  * Abstract class for language strategies. Subclasses have to override the analyze method.
- * <p>
+ * <p/>
  * Created by artur on 10.05.15.
  */
 public abstract class LanguageStrategy {
@@ -24,6 +24,8 @@ public abstract class LanguageStrategy {
 
 	/**
 	 * Checks if the given filename has the same ending of this language strategy.
+	 * This uses the simple ending check also used for instantiating the language strategy
+	 * via the factory. If a language has many endings you can override this method.
 	 *
 	 * @param filename file to check language
 	 * @return true if endings are equal

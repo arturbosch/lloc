@@ -1,4 +1,4 @@
-package de.artismarti.languages;
+package de.artismarti.loc.languages;
 
 import java.util.List;
 
@@ -11,11 +11,13 @@ import java.util.List;
  */
 public class JavaStrategy extends LanguageStrategy {
 
-	private String[] comments = {"//", "/*", "*/", "*"};
-	private String[] escapes = {"import", "package"};
+	protected String[] comments;
+	protected String[] escapes;
 
 	protected JavaStrategy(String ending) {
 		super(ending);
+		comments = new String[]{"//", "/*", "*/", "*"};
+		escapes = new String[]{"import", "package"};
 	}
 
 	@Override

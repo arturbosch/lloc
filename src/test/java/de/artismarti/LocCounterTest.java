@@ -1,11 +1,11 @@
 package de.artismarti;
 
-import de.artismarti.exceptions.ToFewArgumentsException;
-import de.artismarti.exceptions.UnsupportedLanguageException;
-import de.artismarti.languages.JavaStrategy;
-import de.artismarti.languages.LanguageStrategy;
-import de.artismarti.languages.LanguageStrategyFactory;
-import de.artismarti.languages.NullStrategy;
+import de.artismarti.loc.exceptions.ToFewArgumentsException;
+import de.artismarti.loc.exceptions.UnsupportedLanguageException;
+import de.artismarti.loc.languages.JavaStrategy;
+import de.artismarti.loc.languages.LanguageStrategy;
+import de.artismarti.loc.languages.LanguageStrategyFactory;
+import de.artismarti.loc.languages.NullStrategy;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Assert;
@@ -76,7 +76,7 @@ public class LocCounterTest {
 
 	@Test
 	public void testFileCount() {
-		String[] args = {"java","./src/main/java/de/artismarti/exceptions/UnsupportedLanguageException.java"};
+		String[] args = {"java","./src/main/java/de/artismarti/loc/exceptions/UnsupportedLanguageException.java"};
 		int expectedCount = 3;
 		assertLocCount(expectedCount, args);
 	}

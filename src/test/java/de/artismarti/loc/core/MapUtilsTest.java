@@ -1,4 +1,4 @@
-package de.artismarti.core;
+package de.artismarti.loc.core;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package de.artismarti.exceptions;
+package de.artismarti.loc.exceptions;
 
 /**
  * If there to few arguments for the main method.

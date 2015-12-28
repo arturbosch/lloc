@@ -1,4 +1,4 @@
-package de.artismarti.languages;
+package de.artismarti.loc.languages;
 
 import java.util.Arrays;
 
@@ -9,8 +9,10 @@ import java.util.Arrays;
  */
 public class LanguageStrategyFactory {
 
-	public static final String[] languages = {"java"};
 	public final static String JAVA = "java";
+	public final static String CPP = "cpp";
+
+	public static final String[] languages = {JAVA, CPP};
 
 	/**
 	 * Builds a language strategy for provided language.
@@ -22,6 +24,9 @@ public class LanguageStrategyFactory {
 		if (Arrays.asList(languages).contains(lang)) {
 			if (lang.equals(JAVA)) {
 				return new JavaStrategy(lang);
+			}
+			if (lang.equals(CPP)) {
+				return new CppStrategy(lang);
 			}
 		}
 

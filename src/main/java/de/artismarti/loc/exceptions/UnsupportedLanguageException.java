@@ -1,7 +1,7 @@
-package de.artismarti.exceptions;
+package de.artismarti.loc.exceptions;
 
 /**
- * If language is not supported in {@link de.artismarti.languages.LanguageStrategyFactory}.
+ * If language is not supported in {@link de.artismarti.loc.languages.LanguageStrategyFactory}.
  * <p>
  * Created by artur on 10.05.15.
  */

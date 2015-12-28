@@ -1,6 +1,6 @@
-package de.artismarti.core;
+package de.artismarti.loc.core;
 
-import de.artismarti.languages.LanguageStrategyFactory;
+import de.artismarti.loc.languages.LanguageStrategyFactory;
 import org.junit.After;
 import org.junit.Test;
 
@@ -22,8 +22,8 @@ public class LOCTest {
 	private static final int EXPECTED_LOC_WITH_COMMENTS = 16;
 	private static final int EXPECTED_LOC_WITH_COMMENTS_AND_IMPORTS_ETC = 18;
 
-	private static File file = new File("./src/main/java/de/artismarti/exceptions/UnsupportedLanguageException.java");
-	private static File file2 = new File("./src/main/java/de/artismarti/exceptions/ToFewArgumentsException.java");
+	private static File file = new File("./src/main/java/de/artismarti/loc/exceptions/UnsupportedLanguageException.java");
+	private static File file2 = new File("./src/main/java/de/artismarti/loc/exceptions/ToFewArgumentsException.java");
 	private static File SRC_FILE = new File("./src");
 
 	private static File del_file = new File("./UnsupportedLanguageException.java.txt");

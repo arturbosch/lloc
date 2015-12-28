@@ -1,6 +1,6 @@
-package de.artismarti.core;
+package de.artismarti.loc.core;
 
-import de.artismarti.languages.LanguageStrategy;
+import de.artismarti.loc.languages.LanguageStrategy;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,7 +43,7 @@ public class LOC {
 	/**
 	 * Counts the LOC for all given files with the given language. No comments and import, package statements are counted.
 	 *
-	 * @param strategy use {@link de.artismarti.languages.LanguageStrategyFactory} to build a language strategy
+	 * @param strategy use {@link de.artismarti.loc.languages.LanguageStrategyFactory} to build a language strategy
 	 * @param files    which files should be analyzed
 	 * @return loc count of all analyzed files
 	 */
@@ -54,7 +54,7 @@ public class LOC {
 	/**
 	 * Counts the LOC for all given files with the given language. Comments are counted too but not import or package statements.
 	 *
-	 * @param strategy use {@link de.artismarti.languages.LanguageStrategyFactory} to build a language strategy
+	 * @param strategy use {@link de.artismarti.loc.languages.LanguageStrategyFactory} to build a language strategy
 	 * @param files    which files should be analyzed
 	 * @return loc count of all analyzed files
 	 */
@@ -65,7 +65,7 @@ public class LOC {
 	/**
 	 * Counts the LOC for all given files with the given language.
 	 *
-	 * @param strategy      use {@link de.artismarti.languages.LanguageStrategyFactory} to build a language strategy
+	 * @param strategy      use {@link de.artismarti.loc.languages.LanguageStrategyFactory} to build a language strategy
 	 * @param isCommentMode if true, count comments too
 	 * @param isFullMode    if true, count imports and package statements too
 	 * @param isLocFileMode if true, create file with loc to file entries

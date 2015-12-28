@@ -1,4 +1,4 @@
-package de.artismarti.core;
+package de.artismarti.loc.core;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
