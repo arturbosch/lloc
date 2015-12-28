@@ -12,6 +12,7 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 		* -h for help eg. this message
 	languages supported so far: 
 		* java
+		* cpp
 
 ## Changelog:
 
@@ -25,3 +26,6 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 - Can be used as a library with the LOC-class
 - sorting for output log file
 - paths can be added to the analyze
+
+### v1.3
+- C++ language is supported now with language command 'cpp'
