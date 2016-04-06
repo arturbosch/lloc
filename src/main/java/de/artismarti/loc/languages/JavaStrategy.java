@@ -11,10 +11,10 @@ import java.util.List;
  */
 public class JavaStrategy extends LanguageStrategy {
 
-	protected String[] comments;
-	protected String[] escapes;
+	String[] comments;
+	String[] escapes;
 
-	protected JavaStrategy(String ending) {
+	JavaStrategy(String ending) {
 		super(ending);
 		comments = new String[]{"//", "/*", "*/", "*"};
 		escapes = new String[]{"import", "package"};

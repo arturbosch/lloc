@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class NullStrategy extends LanguageStrategy {
 
-	protected NullStrategy(String ending) {
+	NullStrategy(String ending) {
 		super(ending);
 	}
 

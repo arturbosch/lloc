@@ -22,12 +22,12 @@ import java.util.stream.Collectors;
  */
 public class LocCounter {
 
-	String fileName = "LOC";
-	int locCount = 0;
 	boolean isCommentMode = false;
-	boolean isFullMode = false;
 	boolean isLocFileMode = false;
-	boolean sortByKeys = false;
+
+	private int locCount = 0;
+	private boolean isFullMode = false;
+	private boolean sortByKeys = false;
 
 	public static void main(String... args) throws UnsupportedLanguageException,
 			FileNotFoundException, ToFewArgumentsException {
@@ -104,6 +104,7 @@ public class LocCounter {
 		}
 
 		List<File> files = new ArrayList<>();
+		String fileName;
 		if (argList.size() == 1) {
 			File file = new File(argList.remove(0));
 			if (!file.exists()) {

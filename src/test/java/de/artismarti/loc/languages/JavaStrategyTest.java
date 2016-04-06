@@ -13,8 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class JavaStrategyTest {
 
-	public static final String JAVA = "java";
-	public static final String TEST_FILE = "./src/test/resources/Test.java";
+	private static final String JAVA = "java";
+	private static final String TEST_FILE = "./src/test/resources/Test.java";
 
 	@Test
 	public void testLogical() {

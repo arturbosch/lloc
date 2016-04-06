@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
  * <p>
  * Created by artur on 11.10.15.
  */
-public class MapUtils {
+class MapUtils {
 
 	private MapUtils() {}
 
-	public static Comparator<Map.Entry<String, Integer>> byValues = Map.Entry.comparingByValue(Comparator.reverseOrder());
+	static Comparator<Map.Entry<String, Integer>> byValues = Map.Entry.comparingByValue(Comparator.reverseOrder());
 
-	public static Comparator<Map.Entry<String, Integer>> byKeys = Map.Entry.comparingByKey();
+	static Comparator<Map.Entry<String, Integer>> byKeys = Map.Entry.comparingByKey();
 
 	static Map<String, Integer> sortMap(Map<String, Integer> unsorted, Comparator<Map.Entry<String, Integer>> comparator) {
 		return unsorted.entrySet()

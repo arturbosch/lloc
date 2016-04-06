@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class LanguageStrategyFactory {
 
-	public final static String JAVA = "java";
-	public final static String CPP = "cpp";
+	private final static String JAVA = "java";
+	private final static String CPP = "cpp";
 
 	public static final String[] languages = {JAVA, CPP};
 

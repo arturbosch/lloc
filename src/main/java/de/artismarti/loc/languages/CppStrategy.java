@@ -5,11 +5,11 @@ package de.artismarti.loc.languages;
  *
  * @author artur
  */
-public class CppStrategy extends JavaStrategy {
+class CppStrategy extends JavaStrategy {
 
 	private String[] endings = {"cpp", "c", "cc", "c++", "h", "h++", "hpp"};
 
-	protected CppStrategy(String ending) {
+	CppStrategy(String ending) {
 		super(ending);
 		comments = new String[]{"//", "/*", "*/", "*"};
 		escapes = new String[]{"#include", "using"};
