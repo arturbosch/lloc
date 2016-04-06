@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
  * Updated by artur on 03.07.15:
  * - Refactored countFile method, so no counting logic is in this class.
  * - Reads now all lines from a file and provide them for the strategy.
+ * Updated by artur on 06.04.16:
+ * - Add kotlin language strategy
+ * - Fix intellij issues
  */
 public class LocCounter {
 
@@ -46,7 +49,7 @@ public class LocCounter {
 	 * -l to create a log file with entries look like filename:loc
 	 * -h for help eg. this message
 	 * languages supported so far:
-	 * java
+	 * java, cpp, kt (kotlin)
 	 *
 	 * @param arguments list of arguments
 	 * @throws UnsupportedLanguageException if the given language is not supported
@@ -68,7 +71,7 @@ public class LocCounter {
 					"\t\t-ls to create a log file with filename:loc and sorting by filenames \n" +
 					"\t\t-h for help eg. this message\n" +
 					"\tlanguages supported so far: \n" +
-					"\t\tjava");
+					"\t\tjava, cpp, kt");
 			return;
 		}
 
