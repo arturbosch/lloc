@@ -76,7 +76,7 @@ public class JavaStrategy extends LanguageStrategy {
 		return counter;
 	}
 
-	private boolean isEscaped(String trimmed, String[] rules) {
+	boolean isEscaped(String trimmed, String[] rules) {
 		for (String rule : rules) {
 			if (trimmed.startsWith(rule)) {
 				return true;

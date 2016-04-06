@@ -11,8 +11,9 @@ public class LanguageStrategyFactory {
 
 	private final static String JAVA = "java";
 	private final static String CPP = "cpp";
+	private final static String KOTLIN = "kt";
 
-	public static final String[] languages = {JAVA, CPP};
+	public static final String[] languages = {JAVA, CPP, KOTLIN};
 
 	/**
 	 * Builds a language strategy for provided language.
@@ -27,6 +28,9 @@ public class LanguageStrategyFactory {
 			}
 			if (lang.equals(CPP)) {
 				return new CppStrategy(lang);
+			}
+			if (lang.equals(KOTLIN)) {
+				return new KotlinStrategy(lang);
 			}
 		}
 
