@@ -11,8 +11,7 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 		* -ls to create a log file with filename:loc and sorting by filenames 
 		* -h for help eg. this message
 	languages supported so far: 
-		* java
-		* cpp
+		* java, cpp, kt, groovy, scala
 
 ## Changelog:
 
@@ -29,3 +28,6 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 
 ### v1.3
 - C++ language is supported now with language command 'cpp'
+
+### v1.4
+- Support for Kotlin, Scala, Groovy
