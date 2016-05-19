@@ -49,7 +49,7 @@ public class LocCounter {
 	 * -l to create a log file with entries look like filename:loc
 	 * -h for help eg. this message
 	 * languages supported so far:
-	 * java, cpp, kt (kotlin)
+	 * java, cpp, kt (kotlin), scala, groovy
 	 *
 	 * @param arguments list of arguments
 	 * @throws UnsupportedLanguageException if the given language is not supported
@@ -71,7 +71,7 @@ public class LocCounter {
 					"\t\t-ls to create a log file with filename:loc and sorting by filenames \n" +
 					"\t\t-h for help eg. this message\n" +
 					"\tlanguages supported so far: \n" +
-					"\t\tjava, cpp, kt");
+					"\t\tjava, cpp, kt, scala, groovy");
 			return;
 		}
 
