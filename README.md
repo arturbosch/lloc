@@ -1,8 +1,14 @@
+# lloc - Logical Lines of Code
+
+Sum up your loc count! Logical means no empty lines, imports,
+packages and comments are counted in default mode. Use -h for info on
+other modes.
+
 ## Usage:
 
 To count lines of code of a file or a whole directory with files write:
 
-java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
+java -jar lloc.jar [options..] [language] [pathToFiles]+
 
 	options can be: 
 		* -c for counting comments too
@@ -12,6 +18,9 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 		* -h for help eg. this message
 	languages supported so far: 
 		* java
+		* groovy
+		* kotlin
+		* scala
 		* cpp
 
 ## Changelog:
@@ -29,3 +38,8 @@ java -jar CountMyLOCs.jar [options..] [language] [pathToFiles]+
 
 ### v1.3
 - C++ language is supported now with language command 'cpp'
+
+### v1.4
+- Support groovy, scala and kotlin
+- Use new package structure
+- Rename to lloc (Logical Lines of Code)
