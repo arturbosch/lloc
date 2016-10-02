@@ -30,7 +30,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>de.artismarti.LocCounter</mainClass>
+                            <mainClass>io.gitlab.arturbosch.LocCounter</mainClass>
                         </manifest>
                     </archive>
 
