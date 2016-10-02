@@ -97,7 +97,7 @@ public class LOC {
 	 * @return loc count of all analyzed files
 	 */
 	public static int countWithModes(LanguageStrategy strategy, boolean isCommentMode, boolean isFullMode,
-	                                 boolean isLocFileMode, boolean sortByKey, File... files) {
+									 boolean isLocFileMode, boolean sortByKey, File... files) {
 		int counter = 0;
 		for (File file : files) {
 			LOC loc = new LOC(file.getName(), isCommentMode, isFullMode, isLocFileMode, sortByKey);

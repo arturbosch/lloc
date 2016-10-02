@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
  */
 class MapUtils {
 
-	private MapUtils() {}
+	private MapUtils() {
+	}
 
 	static Comparator<Map.Entry<String, Integer>> byValues = Map.Entry.comparingByValue(Comparator.reverseOrder());
 

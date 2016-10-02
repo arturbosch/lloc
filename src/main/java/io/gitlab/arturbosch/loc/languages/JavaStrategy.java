@@ -5,9 +5,9 @@ import java.util.List;
 /**
  * Created by artur on 10.05.15.
  * Updated by artur on 03.07.15:
- *     - Counts now the logical LOCs by conventions.
- *     - Conventions are that no more than one statement is allowed to be in one line.
- *     - A Statement can grow over one line, but will be counted as one LOC.
+ * - Counts now the logical LOCs by conventions.
+ * - Conventions are that no more than one statement is allowed to be in one line.
+ * - A Statement can grow over one line, but will be counted as one LOC.
  */
 public class JavaStrategy extends LanguageStrategy {
 

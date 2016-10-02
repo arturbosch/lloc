@@ -1,11 +1,11 @@
 package io.gitlab.arturbosch;
 
+import io.gitlab.arturbosch.loc.exceptions.ToFewArgumentsException;
 import io.gitlab.arturbosch.loc.exceptions.UnsupportedLanguageException;
 import io.gitlab.arturbosch.loc.languages.JavaStrategy;
 import io.gitlab.arturbosch.loc.languages.LanguageStrategy;
-import io.gitlab.arturbosch.loc.languages.NullStrategy;
-import io.gitlab.arturbosch.loc.exceptions.ToFewArgumentsException;
 import io.gitlab.arturbosch.loc.languages.LanguageStrategyFactory;
+import io.gitlab.arturbosch.loc.languages.NullStrategy;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Assert;
@@ -46,7 +46,7 @@ public class LocCounterTest {
 
 	@Test
 	public void test() throws UnsupportedLanguageException, FileNotFoundException, ToFewArgumentsException {
-	    LocCounter.main("java", "./");
+		LocCounter.main("java", "./");
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class LocCounterTest {
 
 	@Test(expected = ToFewArgumentsException.class)
 	public void testModes() throws UnsupportedLanguageException, ToFewArgumentsException, FileNotFoundException {
-		String[] args = {"-c","-l"};
+		String[] args = {"-c", "-l"};
 		LocCounter.main(args);
 		Assert.assertThat(locCounter.isCommentMode, is(true));
 		Assert.assertThat(locCounter.isLocFileMode, is(true));
@@ -64,26 +64,26 @@ public class LocCounterTest {
 
 	@Test(expected = UnsupportedLanguageException.class)
 	public void testUnsupportedLanguage() throws UnsupportedLanguageException, ToFewArgumentsException, FileNotFoundException {
-		String[] args = {"-c","-l","xml","file"};
+		String[] args = {"-c", "-l", "xml", "file"};
 		LocCounter.main(args);
 	}
 
 	@Test(expected = FileNotFoundException.class)
 	public void testFileNotExist() throws UnsupportedLanguageException, ToFewArgumentsException, FileNotFoundException {
-		String[] args = {"-c","-l","java","file"};
+		String[] args = {"-c", "-l", "java", "file"};
 		LocCounter.main(args);
 	}
 
 	@Test
 	public void testFileCount() {
-		String[] args = {"java","./src/main/java/io/gitlab/arturbosch/loc/exceptions/UnsupportedLanguageException.java"};
+		String[] args = {"java", "./src/main/java/io/gitlab/arturbosch/loc/exceptions/UnsupportedLanguageException.java"};
 		int expectedCount = 3;
 		assertLocCount(expectedCount, args);
 	}
 
 	@Test
 	public void testDirectoryCount() {
-		String[] args = {"-l","java","./src"};
+		String[] args = {"-l", "java", "./src"};
 		int expectedCount = 150;
 		assertLocCount(expectedCount, args);
 		File file = new File("src.txt");
@@ -92,7 +92,7 @@ public class LocCounterTest {
 
 	@Test
 	public void testDirectoryCountWithComments() {
-		String[] args = {"-c", "-l","java","./src"};
+		String[] args = {"-c", "-l", "java", "./src"};
 		int expectedCount = 170;
 		assertLocCount(expectedCount, args);
 		File file = new File("src.txt");
@@ -101,7 +101,7 @@ public class LocCounterTest {
 
 	@Test
 	public void testDirectoryCountWithFullMode() {
-		String[] args = {"-f", "-l","java","./src"};
+		String[] args = {"-f", "-l", "java", "./src"};
 		int expectedCount = 200;
 		assertLocCount(expectedCount, args);
 		File file = new File("src.txt");
@@ -110,7 +110,7 @@ public class LocCounterTest {
 
 	@Test
 	public void testDirectoryCountWithFullAndCommentMode() {
-		String[] args = {"-c", "-f", "-l","java","./src"};
+		String[] args = {"-c", "-f", "-l", "java", "./src"};
 		int expectedCount = 220;
 		assertLocCount(expectedCount, args);
 		File file = new File("src.txt");

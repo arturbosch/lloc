@@ -11,7 +11,8 @@ class OtherJVMLanguageStrategy extends JavaStrategy {
 		super(ending);
 	}
 
-	@Override public int analyze(List<String> lines, boolean isCommentMode, boolean isFullMode) {
+	@Override
+	public int analyze(List<String> lines, boolean isCommentMode, boolean isFullMode) {
 		int counter = 0;
 		boolean escape;
 

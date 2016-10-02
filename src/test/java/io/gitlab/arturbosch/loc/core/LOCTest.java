@@ -70,9 +70,9 @@ public class LOCTest {
 		assertThat(isSorted(lines), is(true));
 	}
 
-	private static <T extends Comparable<? super T>> boolean isSorted(List<T> array){
-		for (int i = 0; i < array.size()-1; i++) {
-			if(array.get(i).compareTo(array.get(i+1))> 0){
+	private static <T extends Comparable<? super T>> boolean isSorted(List<T> array) {
+		for (int i = 0; i < array.size() - 1; i++) {
+			if (array.get(i).compareTo(array.get(i + 1)) > 0) {
 				return false;
 			}
 		}

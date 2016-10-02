@@ -1,11 +1,11 @@
 package io.gitlab.arturbosch;
 
+import io.gitlab.arturbosch.loc.core.LOC;
+import io.gitlab.arturbosch.loc.exceptions.ToFewArgumentsException;
 import io.gitlab.arturbosch.loc.exceptions.UnsupportedLanguageException;
 import io.gitlab.arturbosch.loc.languages.LanguageStrategy;
 import io.gitlab.arturbosch.loc.languages.LanguageStrategyFactory;
 import io.gitlab.arturbosch.loc.languages.NullStrategy;
-import io.gitlab.arturbosch.loc.exceptions.ToFewArgumentsException;
-import io.gitlab.arturbosch.loc.core.LOC;
 
 import java.io.File;
 import java.io.FileNotFoundException;
